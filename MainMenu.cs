@@ -1,8 +1,8 @@
 namespace winMaker_dotnet
 {
-    public partial class Form1 : Form
+    public partial class MainMenu : Form
     {
-        public Form1()
+        public MainMenu()
         {
             InitializeComponent();
         }

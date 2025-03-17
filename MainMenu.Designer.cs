@@ -1,6 +1,6 @@
 ﻿namespace winMaker_dotnet
 {
-    partial class Form1
+    partial class MainMenu
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,10 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            SuspendLayout();
+            // 
+            // MainMenu
+            // 
+            AutoScaleMode = AutoScaleMode.None;
+            ClientSize = new Size(782, 473);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MaximumSize = new Size(800, 520);
+            MinimumSize = new Size(800, 520);
+            Name = "MainMenu";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "WinMaker.NET";
+            ResumeLayout(false);
         }
 
         #endregion
