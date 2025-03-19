@@ -41,7 +41,7 @@ namespace winMaker_dotnet
         // Navigate to GitHub profile
         private void ButtonSupport_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/GeekInTheBedroom");
+            Process.Start("explorer.exe", "https://github.com/GeekInTheBedroom");
         }
     }
 }
