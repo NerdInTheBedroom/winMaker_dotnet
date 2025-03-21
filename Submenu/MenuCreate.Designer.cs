@@ -76,6 +76,7 @@
             ButtonCreate.TabIndex = 5;
             ButtonCreate.Text = "Create project";
             ButtonCreate.UseVisualStyleBackColor = false;
+            ButtonCreate.Click += ButtonCreate_Click;
             // 
             // BoxDirectory
             // 
@@ -127,6 +128,7 @@
             ButtonDirectory.TabIndex = 3;
             ButtonDirectory.Text = "Choose a directory";
             ButtonDirectory.UseVisualStyleBackColor = false;
+            ButtonDirectory.Click += ButtonDirectory_Click;
             // 
             // ComboType
             // 
