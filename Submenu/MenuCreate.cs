@@ -65,6 +65,7 @@ namespace winMaker_dotnet.Sub_menu
                     // Create the project loader
                     StreamWriter ProjectLoader = new StreamWriter($"{ProjectPath}/{ProjectName}.wmp");
                     ProjectLoader.Write($"{ProjectPath}/src/{ProjectName}.wmnodes\n{ProjectPath}/src/{ProjectName}.wmcodes"); // Nodes, Codes
+                    ProjectLoader.Close();
                 }
                 else
                 {
