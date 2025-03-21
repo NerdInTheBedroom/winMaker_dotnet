@@ -51,7 +51,7 @@ namespace winMaker_dotnet.Sub_menu
                 ProjectPath = $"{BoxDirectory.Text}/{ProjectName}";
 
                 // If project directory isn't empty and exists
-                if (Directory.Exists(ProjectName) && ProjectName != string.Empty)
+                if (Directory.Exists(BoxDirectory.Text) && ProjectName != string.Empty)
                 {
                     // Create the project directory
                     Directory.CreateDirectory(ProjectPath);
