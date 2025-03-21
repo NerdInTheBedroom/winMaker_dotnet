@@ -6,6 +6,7 @@
  */
 
 using System.Media;
+using winMaker_dotnet.DefaultEditor;
 
 namespace winMaker_dotnet.Sub_menu
 {
@@ -50,12 +51,12 @@ namespace winMaker_dotnet.Sub_menu
                 // If a directory with the same name as the project name already exist
                 if (Directory.Exists($"{BoxDirectory.Text}/{ProjectName}"))
                 {
-                    MessageBox.Show("A directory with this project name already exist.", "Project Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("A directory with this project name already exist.", "Project Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 // If the path(project directory location) doesn't exist
                 else if (!Directory.Exists(BoxDirectory.Text) || ProjectName == string.Empty)
                 {
-                    MessageBox.Show("Choosen directory is empty or doesn't exist.", "Project Directory", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    MessageBox.Show("Choosen directory is empty or doesn't exist.", "Project Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 // If project name isn't empty and the path(project directory location) exists
                 else
@@ -77,6 +78,15 @@ namespace winMaker_dotnet.Sub_menu
                     StreamWriter ProjectLoader = new($"{ProjectPath}/{ProjectName}.wmp");
                     ProjectLoader.Write($"{ProjectPath}/src/{ProjectName}.wmnodes\n{ProjectPath}/src/{ProjectName}.wmcodes"); // Nodes, Codes
                     ProjectLoader.Close();
+
+                    // Open the project
+                    Editor editor = new()
+                    {
+                        LoadProjectName = ProjectName,
+                        LoadProjectPath = ProjectPath
+                    };
+                    editor.Show();
+                    Hide();
                 }
             }
             else
