@@ -18,9 +18,9 @@ namespace winMaker_dotnet.DefaultEditor
         {
             InitializeComponent();
 
-            string[] Paths = LoadProjectPath.Split('\n', StringSplitOptions.RemoveEmptyEntries); // Parse into two paths(Node and Code)
-            ProjectNodePath = Paths[0].Replace('\\', '/');
-            ProjectCodePath = Paths[1].Replace('\\', '/');
+            string[] Paths = LoadProjectPath.Replace('\\', '/').Split([Environment.NewLine], StringSplitOptions.None); // Parse into two paths(Node and Code)
+            ProjectNodePath = Paths[0];
+            ProjectCodePath = Paths[1];
         }
 
         private void Editor_Load(object sender, EventArgs e)

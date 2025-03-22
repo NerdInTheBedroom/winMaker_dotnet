@@ -61,6 +61,7 @@
             ButtonOpen.TabIndex = 2;
             ButtonOpen.Text = "Open project";
             ButtonOpen.UseVisualStyleBackColor = false;
+            ButtonOpen.Click += ButtonOpen_Click;
             // 
             // ButtonProject
             // 
@@ -74,6 +75,7 @@
             ButtonProject.TabIndex = 1;
             ButtonProject.Text = "Choose the project";
             ButtonProject.UseVisualStyleBackColor = false;
+            ButtonProject.Click += ButtonProject_Click;
             // 
             // MenuOpen
             // 
