@@ -50,7 +50,7 @@ namespace winMaker_dotnet.DefaultEditor
             }
         }
 
-        // Create function and variable
+        // Creating functions and variables
         private void ButtonCreateFunction_Click(object sender, EventArgs e)
         {
             if (ListBoxFunctions.Items.Contains(BoxFunction.Text))
@@ -72,6 +72,31 @@ namespace winMaker_dotnet.DefaultEditor
             else
             {
                 ListBoxVariables.Items.Add(BoxVariable.Text);
+            }
+        }
+
+        // Deleting functions and variables
+        private void ButtonDeleteFunction_Click(object sender, EventArgs e)
+        {
+            if (!ListBoxFunctions.Items.Contains(BoxFunction.Text))
+            {
+                MessageBox.Show("A function with this name doesn't exist.", "Function Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ListBoxFunctions.Items.Remove(BoxFunction.Text);
+            }
+        }
+
+        private void ButtonDeleteVariable_Click(object sender, EventArgs e)
+        {
+            if (!ListBoxVariables.Items.Contains(BoxVariable.Text))
+            {
+                MessageBox.Show("A variable with this name doesn't exist.", "Variable Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ListBoxVariables.Items.Remove(BoxVariable.Text);
             }
         }
         #endregion

@@ -150,6 +150,7 @@
             ButtonDeleteFunction.Size = new Size(28, 28);
             ButtonDeleteFunction.TabIndex = 2;
             ButtonDeleteFunction.UseVisualStyleBackColor = false;
+            ButtonDeleteFunction.Click += ButtonDeleteFunction_Click;
             // 
             // BoxFunction
             // 
@@ -221,6 +222,7 @@
             ButtonDeleteVariable.Size = new Size(28, 28);
             ButtonDeleteVariable.TabIndex = 2;
             ButtonDeleteVariable.UseVisualStyleBackColor = false;
+            ButtonDeleteVariable.Click += ButtonDeleteVariable_Click;
             // 
             // BoxVariable
             // 
