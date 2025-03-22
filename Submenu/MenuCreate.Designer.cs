@@ -119,9 +119,9 @@ namespace winMaker_dotnet.Sub_menu
             LabelName.ForeColor = Color.DarkGray;
             LabelName.Location = new Point(3, 38);
             LabelName.Name = "LabelName";
-            LabelName.Size = new Size(463, 64);
+            LabelName.Size = new Size(462, 64);
             LabelName.TabIndex = 1;
-            LabelName.Text = "*A project name must have 10-25 characters. No special characters and spaces allowed.\r\n";
+            LabelName.Text = "*A project name must have 10-25 characters. Only letters and digits allowed.\r\n";
             // 
             // ButtonDirectory
             // 

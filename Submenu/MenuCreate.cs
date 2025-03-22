@@ -22,10 +22,10 @@ namespace winMaker_dotnet.Sub_menu
         {
             foreach (char c in BoxName.Text)
             {
-                if (char.IsLetter(c) != true)
+                if (char.IsLetterOrDigit(c) != true)
                 {
                     BoxName.Text = "";
-                    SystemSounds.Hand.Play();
+                    MessageBox.Show("Only letters and digits allowed.", "Project Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -80,7 +80,6 @@ namespace winMaker_dotnet.Sub_menu
                         ProjectNodePath = $@"{ProjectPath}\{ProjectName}.wmnodes"
                     };
                     editor.Show();
-                    Hide();
                 }
             }
             else
