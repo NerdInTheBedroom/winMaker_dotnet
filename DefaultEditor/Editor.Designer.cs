@@ -56,7 +56,7 @@
             // 
             // EditorContainer
             // 
-            EditorContainer.BackColor = Color.FromArgb(86, 86, 86);
+            EditorContainer.BackColor = Color.Transparent;
             EditorContainer.Dock = DockStyle.Fill;
             EditorContainer.Location = new Point(0, 0);
             EditorContainer.Name = "EditorContainer";
@@ -65,15 +65,16 @@
             // 
             EditorContainer.Panel1.BackColor = Color.FromArgb(48, 48, 48);
             EditorContainer.Panel1.Controls.Add(ProjectContainer);
+            EditorContainer.Panel1MinSize = 300;
             // 
             // EditorContainer.Panel2
             // 
             EditorContainer.Panel2.BackColor = Color.FromArgb(72, 72, 72);
             EditorContainer.Panel2.Controls.Add(EditorTab);
+            EditorContainer.Panel2MinSize = 400;
             EditorContainer.Size = new Size(842, 493);
             EditorContainer.SplitterDistance = 300;
-            EditorContainer.SplitterIncrement = 2;
-            EditorContainer.SplitterWidth = 2;
+            EditorContainer.SplitterIncrement = 5;
             EditorContainer.TabIndex = 0;
             // 
             // ProjectContainer
@@ -89,6 +90,8 @@
             // 
             ProjectContainer.Panel1.Controls.Add(ListBoxFunctions);
             ProjectContainer.Panel1.Controls.Add(TablePanelFunctions);
+            ProjectContainer.Panel1MinSize = 180;
+            ProjectContainer.Panel2MinSize = 180;
             ProjectContainer.Size = new Size(300, 493);
             ProjectContainer.SplitterDistance = 246;
             ProjectContainer.TabIndex = 0;
@@ -170,7 +173,7 @@
             EditorTab.Location = new Point(0, 0);
             EditorTab.Name = "EditorTab";
             EditorTab.SelectedIndex = 0;
-            EditorTab.Size = new Size(540, 493);
+            EditorTab.Size = new Size(538, 493);
             EditorTab.TabIndex = 0;
             // 
             // MainEditor
@@ -181,7 +184,7 @@
             MainEditor.Location = new Point(4, 29);
             MainEditor.Name = "MainEditor";
             MainEditor.Padding = new Padding(3);
-            MainEditor.Size = new Size(532, 460);
+            MainEditor.Size = new Size(530, 460);
             MainEditor.TabIndex = 0;
             MainEditor.Text = "Main";
             // 
@@ -193,7 +196,7 @@
             EditorStatus.Items.AddRange(new ToolStripItem[] { LabelCursor });
             EditorStatus.Location = new Point(3, 435);
             EditorStatus.Name = "EditorStatus";
-            EditorStatus.Size = new Size(526, 22);
+            EditorStatus.Size = new Size(524, 22);
             EditorStatus.TabIndex = 1;
             EditorStatus.Text = "Activity Status";
             // 
@@ -212,7 +215,7 @@
             PanelEditor.Dock = DockStyle.Fill;
             PanelEditor.Location = new Point(3, 3);
             PanelEditor.Name = "PanelEditor";
-            PanelEditor.Size = new Size(526, 454);
+            PanelEditor.Size = new Size(524, 454);
             PanelEditor.TabIndex = 0;
             // 
             // CustomEditorTab
@@ -221,7 +224,7 @@
             CustomEditorTab.Location = new Point(4, 29);
             CustomEditorTab.Name = "CustomEditorTab";
             CustomEditorTab.Padding = new Padding(3);
-            CustomEditorTab.Size = new Size(532, 460);
+            CustomEditorTab.Size = new Size(530, 460);
             CustomEditorTab.TabIndex = 1;
             CustomEditorTab.Text = "Custom";
             // 

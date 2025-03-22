@@ -1,4 +1,11 @@
-﻿namespace winMaker_dotnet.Sub_menu
+﻿/*
+ * Created on: 03/20/2025
+ * Last modified on: 03/23/2025
+ * Author: A1EX
+ * GitHub: https://github.com/GeekInTheBedroom/winMaker_dotnet
+ */
+
+namespace winMaker_dotnet.Sub_menu
 {
     partial class MenuOpen
     {
@@ -80,7 +87,7 @@
             // MenuOpen
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.FromArgb(50, 62, 75);
+            BackColor = Color.FromArgb(50, 50, 50);
             Controls.Add(ButtonProject);
             Controls.Add(ButtonOpen);
             Controls.Add(BoxDirectory);

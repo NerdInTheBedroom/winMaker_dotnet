@@ -1,4 +1,11 @@
-﻿namespace winMaker_dotnet
+﻿/*
+ * Created on: 03/17/2025
+ * Last modified on: 03/23/2025
+ * Author: A1EX
+ * GitHub: https://github.com/GeekInTheBedroom/winMaker_dotnet
+ */
+
+namespace winMaker_dotnet
 {
     partial class MainMenu
     {
@@ -59,7 +66,7 @@
             // 
             // ButtonSupport
             // 
-            ButtonSupport.BackColor = Color.MediumVioletRed;
+            ButtonSupport.BackColor = Color.Purple;
             ButtonSupport.FlatAppearance.BorderSize = 3;
             ButtonSupport.FlatAppearance.MouseOverBackColor = Color.HotPink;
             ButtonSupport.FlatStyle = FlatStyle.Popup;
@@ -75,12 +82,12 @@
             // 
             // ButtonInstall
             // 
-            ButtonInstall.BackColor = Color.FromArgb(36, 64, 97);
+            ButtonInstall.BackColor = Color.FromArgb(32, 32, 32);
             ButtonInstall.FlatAppearance.BorderSize = 3;
-            ButtonInstall.FlatAppearance.MouseOverBackColor = Color.FromArgb(144, 202, 249);
+            ButtonInstall.FlatAppearance.MouseOverBackColor = Color.FromArgb(120, 120, 120);
             ButtonInstall.FlatStyle = FlatStyle.Popup;
             ButtonInstall.Font = new Font("Cordia New", 13.8F);
-            ButtonInstall.ForeColor = Color.FromArgb(16, 16, 16);
+            ButtonInstall.ForeColor = Color.LightGray;
             ButtonInstall.Location = new Point(3, 135);
             ButtonInstall.Name = "ButtonInstall";
             ButtonInstall.Size = new Size(250, 60);
@@ -91,12 +98,12 @@
             // 
             // ButtonOpen
             // 
-            ButtonOpen.BackColor = Color.FromArgb(36, 64, 97);
+            ButtonOpen.BackColor = Color.FromArgb(32, 32, 32);
             ButtonOpen.FlatAppearance.BorderSize = 3;
-            ButtonOpen.FlatAppearance.MouseOverBackColor = Color.FromArgb(144, 202, 249);
+            ButtonOpen.FlatAppearance.MouseOverBackColor = Color.FromArgb(120, 120, 120);
             ButtonOpen.FlatStyle = FlatStyle.Popup;
             ButtonOpen.Font = new Font("Cordia New", 13.8F);
-            ButtonOpen.ForeColor = Color.FromArgb(16, 16, 16);
+            ButtonOpen.ForeColor = Color.LightGray;
             ButtonOpen.Location = new Point(3, 69);
             ButtonOpen.Name = "ButtonOpen";
             ButtonOpen.Size = new Size(250, 60);
@@ -107,12 +114,12 @@
             // 
             // ButtonCreate
             // 
-            ButtonCreate.BackColor = Color.FromArgb(36, 64, 97);
+            ButtonCreate.BackColor = Color.FromArgb(32, 32, 32);
             ButtonCreate.FlatAppearance.BorderSize = 3;
-            ButtonCreate.FlatAppearance.MouseOverBackColor = Color.FromArgb(144, 202, 249);
+            ButtonCreate.FlatAppearance.MouseOverBackColor = Color.FromArgb(120, 120, 120);
             ButtonCreate.FlatStyle = FlatStyle.Popup;
             ButtonCreate.Font = new Font("Cordia New", 13.8F);
-            ButtonCreate.ForeColor = Color.FromArgb(16, 16, 16);
+            ButtonCreate.ForeColor = Color.LightGray;
             ButtonCreate.Location = new Point(3, 3);
             ButtonCreate.Name = "ButtonCreate";
             ButtonCreate.Size = new Size(250, 60);
@@ -133,7 +140,7 @@
             // MainMenu
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.FromArgb(62, 76, 91);
+            BackColor = Color.FromArgb(48, 48, 48);
             ClientSize = new Size(782, 473);
             Controls.Add(PanelSubMenu);
             Controls.Add(LayoutButtons);

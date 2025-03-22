@@ -1,4 +1,11 @@
-﻿namespace winMaker_dotnet.Sub_menu
+﻿/*
+ * Created on: 03/17/2025
+ * Last modified on: 03/23/2025
+ * Author: A1EX
+ * GitHub: https://github.com/GeekInTheBedroom
+ */
+
+namespace winMaker_dotnet.Sub_menu
 {
     partial class MenuCreate
     {
@@ -145,7 +152,7 @@
             // MenuCreate
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.FromArgb(50, 62, 75);
+            BackColor = Color.FromArgb(50, 50, 50);
             Controls.Add(LayoutMenu);
             Font = new Font("Cordia New", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "MenuCreate";

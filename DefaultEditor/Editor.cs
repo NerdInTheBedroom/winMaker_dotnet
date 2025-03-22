@@ -18,9 +18,10 @@ namespace winMaker_dotnet.DefaultEditor
             InitializeComponent();
         }
 
+        // Set editor's title to project name
         private void Editor_Load(object sender, EventArgs e)
         {
-            Text = $"{LoadProjectName} - winMaker.NET(Default Editor)"; // Set editor's title to project name
+            Text = $"{LoadProjectName} - winMaker.NET(Default Editor)";
         }
     }
 }
