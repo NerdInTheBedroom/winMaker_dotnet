@@ -1,6 +1,6 @@
 ﻿/*
  * Created on: 03/17/2025
- * Last modified on: 03/21/2025
+ * Last modified on: 03/23/2025
  * Author: A1EX
  * GitHub: https://github.com/GeekInTheBedroom
  */
@@ -49,7 +49,7 @@ namespace winMaker_dotnet.Sub_menu
                 ProjectName = BoxName.Text;
 
                 // If a directory with the same name as the project name already exist
-                if (Directory.Exists($"{BoxDirectory.Text}/{ProjectName}"))
+                if (Directory.Exists(@$"{BoxDirectory.Text}\{ProjectName}"))
                 {
                     MessageBox.Show("A directory with this project name already exist.", "Project Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -63,27 +63,21 @@ namespace winMaker_dotnet.Sub_menu
                 {
                     // Set project path
                     string ProjectPath;
-                    ProjectPath = $"{BoxDirectory.Text}/{ProjectName}";
+                    ProjectPath = @$"{BoxDirectory.Text}\{ProjectName}";
 
                     // Create the project directory
                     Directory.CreateDirectory(ProjectPath);
 
-                    // Create a directory for the project files inside the project directory
-                    Directory.CreateDirectory($"{ProjectPath}/src");
                     // Create the project files
-                    File.Create($"{ProjectPath}/src/{ProjectName}.wmnodes"); // Nodes file
-                    File.Create($"{ProjectPath}/src/{ProjectName}.wmcodes"); // Codes file
-
-                    // Create the project loader
-                    StreamWriter ProjectLoader = new($"{ProjectPath}/{ProjectName}.wmp");
-                    ProjectLoader.Write($"{ProjectPath}/src/{ProjectName}.wmnodes\n{ProjectPath}/src/{ProjectName}.wmcodes"); // Nodes, Codes
-                    ProjectLoader.Close();
+                    File.Create(@$"{ProjectPath}\{ProjectName}.wmcodes"); // Codes file
+                    File.Create(@$"{ProjectPath}\{ProjectName}.wmnodes"); // Nodes file
 
                     // Open the project
                     Editor editor = new()
                     {
                         LoadProjectName = ProjectName,
-                        LoadProjectPath = ProjectPath
+                        ProjectCodePath = $@"{ProjectPath}\{ProjectName}.wmcodes",
+                        ProjectNodePath = $@"{ProjectPath}\{ProjectName}.wmnodes"
                     };
                     editor.Show();
                     Hide();

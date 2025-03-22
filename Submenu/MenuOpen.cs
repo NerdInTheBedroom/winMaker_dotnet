@@ -1,6 +1,6 @@
 ﻿/*
  * Created on: 03/20/2025
- * Last modified on: 03/22/2025
+ * Last modified on: 03/23/2025
  * Author: A1EX
  * GitHub: https://github.com/GeekInTheBedroom/winMaker_dotnet
  */
@@ -11,7 +11,7 @@ namespace winMaker_dotnet.Sub_menu
 {
     public partial class MenuOpen : UserControl
     {
-        public string ProjectName = "";
+        public string ProjectName = "", ProjectPath = "";
         public MenuOpen()
         {
             InitializeComponent();
@@ -20,15 +20,20 @@ namespace winMaker_dotnet.Sub_menu
         // Open file browser for opening the project
         private void ButtonProject_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OpenProject = new()
+            FolderBrowserDialog ProjectFolder = new();
+            ProjectFolder.ShowDialog();
+            BoxDirectory.Text = ProjectFolder.SelectedPath;
+            ProjectPath = BoxDirectory.Text;
+            ProjectName = Path.GetFileName(ProjectPath);
+
+            // Check if the folder contains project files(Codes, Nodes)
+            if (!File.Exists($@"{ProjectPath}\{ProjectName}.wmcodes") && !File.Exists($@"{ProjectPath}\{ProjectName}.wmnodes"))
             {
-                DefaultExt = ".wmp",
-                Filter = "winMaker.NET Project (.wmp)|*.wmp"
-            };
-            if (DialogResult.OK == OpenProject.ShowDialog())
-            {
-                ProjectName = OpenProject.FileName; // Project Name
-                BoxDirectory.Text = Path.GetFullPath(OpenProject.FileName); // Project Path
+                MessageBox.Show("This folder doesn't have Codes file or Nodes file.", "Project Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Reset everything
+                BoxDirectory.Text = string.Empty;
+                ProjectPath = string.Empty;
+                ProjectName = string.Empty;
             }
         }
 
@@ -38,7 +43,8 @@ namespace winMaker_dotnet.Sub_menu
             Editor editor = new()
             {
                 LoadProjectName = ProjectName,
-                LoadProjectPath = BoxDirectory.Text
+                ProjectCodePath = @$"{ProjectPath}\{ProjectName}.wmcodes",
+                ProjectNodePath = $@"{ProjectPath}\{ProjectName}.wmnodes"
             };
             editor.Show();
         }
