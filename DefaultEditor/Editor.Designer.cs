@@ -35,6 +35,11 @@
             ButtonDeleteFunction = new Button();
             BoxFunction = new TextBox();
             ButtonCreateFunction = new Button();
+            ListBoxVariables = new ListBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            ButtonDeleteVariable = new Button();
+            BoxVariable = new TextBox();
+            ButtonCreateVariable = new Button();
             EditorTab = new TabControl();
             MainEditor = new TabPage();
             EditorStatus = new StatusStrip();
@@ -47,8 +52,10 @@
             EditorContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ProjectContainer).BeginInit();
             ProjectContainer.Panel1.SuspendLayout();
+            ProjectContainer.Panel2.SuspendLayout();
             ProjectContainer.SuspendLayout();
             TablePanelFunctions.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             EditorTab.SuspendLayout();
             MainEditor.SuspendLayout();
             EditorStatus.SuspendLayout();
@@ -91,6 +98,11 @@
             ProjectContainer.Panel1.Controls.Add(ListBoxFunctions);
             ProjectContainer.Panel1.Controls.Add(TablePanelFunctions);
             ProjectContainer.Panel1MinSize = 180;
+            // 
+            // ProjectContainer.Panel2
+            // 
+            ProjectContainer.Panel2.Controls.Add(ListBoxVariables);
+            ProjectContainer.Panel2.Controls.Add(tableLayoutPanel1);
             ProjectContainer.Panel2MinSize = 180;
             ProjectContainer.Size = new Size(300, 493);
             ProjectContainer.SplitterDistance = 246;
@@ -146,10 +158,12 @@
             BoxFunction.Dock = DockStyle.Fill;
             BoxFunction.ForeColor = Color.White;
             BoxFunction.Location = new Point(3, 3);
+            BoxFunction.MaxLength = 20;
             BoxFunction.Name = "BoxFunction";
             BoxFunction.PlaceholderText = "Custom function name";
             BoxFunction.Size = new Size(226, 27);
             BoxFunction.TabIndex = 0;
+            BoxFunction.TextChanged += BoxFunction_TextChanged;
             // 
             // ButtonCreateFunction
             // 
@@ -163,6 +177,78 @@
             ButtonCreateFunction.Size = new Size(28, 28);
             ButtonCreateFunction.TabIndex = 1;
             ButtonCreateFunction.UseVisualStyleBackColor = false;
+            ButtonCreateFunction.Click += ButtonCreateFunction_Click;
+            // 
+            // ListBoxVariables
+            // 
+            ListBoxVariables.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ListBoxVariables.BackColor = Color.FromArgb(48, 48, 48);
+            ListBoxVariables.BorderStyle = BorderStyle.FixedSingle;
+            ListBoxVariables.ForeColor = Color.WhiteSmoke;
+            ListBoxVariables.FormattingEnabled = true;
+            ListBoxVariables.Location = new Point(5, 37);
+            ListBoxVariables.Name = "ListBoxVariables";
+            ListBoxVariables.Size = new Size(290, 202);
+            ListBoxVariables.TabIndex = 2;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.BackColor = Color.FromArgb(40, 40, 40);
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.Controls.Add(ButtonDeleteVariable, 2, 0);
+            tableLayoutPanel1.Controls.Add(BoxVariable, 0, 0);
+            tableLayoutPanel1.Controls.Add(ButtonCreateVariable, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(300, 34);
+            tableLayoutPanel1.TabIndex = 1;
+            // 
+            // ButtonDeleteVariable
+            // 
+            ButtonDeleteVariable.BackColor = Color.FromArgb(48, 48, 48);
+            ButtonDeleteVariable.FlatAppearance.BorderColor = Color.FromArgb(84, 84, 84);
+            ButtonDeleteVariable.FlatAppearance.MouseOverBackColor = Color.FromArgb(84, 84, 84);
+            ButtonDeleteVariable.FlatStyle = FlatStyle.Popup;
+            ButtonDeleteVariable.Image = Properties.Resources.trash;
+            ButtonDeleteVariable.Location = new Point(269, 3);
+            ButtonDeleteVariable.Name = "ButtonDeleteVariable";
+            ButtonDeleteVariable.Size = new Size(28, 28);
+            ButtonDeleteVariable.TabIndex = 2;
+            ButtonDeleteVariable.UseVisualStyleBackColor = false;
+            // 
+            // BoxVariable
+            // 
+            BoxVariable.BackColor = Color.FromArgb(64, 64, 64);
+            BoxVariable.BorderStyle = BorderStyle.FixedSingle;
+            BoxVariable.Dock = DockStyle.Fill;
+            BoxVariable.ForeColor = Color.White;
+            BoxVariable.Location = new Point(3, 3);
+            BoxVariable.MaxLength = 20;
+            BoxVariable.Name = "BoxVariable";
+            BoxVariable.PlaceholderText = "Custom variable name";
+            BoxVariable.Size = new Size(226, 27);
+            BoxVariable.TabIndex = 0;
+            BoxVariable.TextChanged += BoxVariable_TextChanged;
+            // 
+            // ButtonCreateVariable
+            // 
+            ButtonCreateVariable.BackColor = Color.FromArgb(48, 48, 48);
+            ButtonCreateVariable.FlatAppearance.BorderColor = Color.FromArgb(84, 84, 84);
+            ButtonCreateVariable.FlatAppearance.MouseOverBackColor = Color.FromArgb(84, 84, 84);
+            ButtonCreateVariable.FlatStyle = FlatStyle.Popup;
+            ButtonCreateVariable.Image = Properties.Resources.plus;
+            ButtonCreateVariable.Location = new Point(235, 3);
+            ButtonCreateVariable.Name = "ButtonCreateVariable";
+            ButtonCreateVariable.Size = new Size(28, 28);
+            ButtonCreateVariable.TabIndex = 1;
+            ButtonCreateVariable.UseVisualStyleBackColor = false;
+            ButtonCreateVariable.Click += ButtonCreateVariable_Click;
             // 
             // EditorTab
             // 
@@ -247,10 +333,13 @@
             ((System.ComponentModel.ISupportInitialize)EditorContainer).EndInit();
             EditorContainer.ResumeLayout(false);
             ProjectContainer.Panel1.ResumeLayout(false);
+            ProjectContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ProjectContainer).EndInit();
             ProjectContainer.ResumeLayout(false);
             TablePanelFunctions.ResumeLayout(false);
             TablePanelFunctions.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             EditorTab.ResumeLayout(false);
             MainEditor.ResumeLayout(false);
             MainEditor.PerformLayout();
@@ -274,5 +363,10 @@
         private Button ButtonCreateFunction;
         private ListBox ListBoxFunctions;
         private Button ButtonDeleteFunction;
+        private ListBox ListBoxVariables;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button ButtonDeleteVariable;
+        private TextBox BoxVariable;
+        private Button ButtonCreateVariable;
     }
 }
