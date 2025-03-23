@@ -305,6 +305,7 @@
             PanelEditor.Name = "PanelEditor";
             PanelEditor.Size = new Size(524, 454);
             PanelEditor.TabIndex = 0;
+            PanelEditor.MouseMove += PanelEditor_MouseMove;
             // 
             // CustomEditorTab
             // 

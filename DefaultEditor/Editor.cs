@@ -100,5 +100,11 @@ namespace winMaker_dotnet.DefaultEditor
             }
         }
         #endregion
+        #region Editor panel
+        private void PanelEditor_MouseMove(object sender, MouseEventArgs e)
+        {
+            LabelCursor.Text = $"{e.X}, {e.Y}";
+        }
+        #endregion
     }
 }
