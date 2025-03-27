@@ -1,26 +1,37 @@
 ﻿/*
- * Created on: 03/23/2025
- * Last modified on: 03/23/2025
+ * Created on: 03/27/2025
+ * Last modified on: 03/28/2025
  * Author: A1EX
  * GitHub: https://github.com/GeekInTheBedroom
  */
 
-using System.ComponentModel;
-
 namespace winMaker_dotnet.DefaultEditor.DefaultNodes
 {
-    public partial class FunctionNode : Component
+    public class FunctionNode : Control
     {
+        // Construct
         public FunctionNode()
         {
-            InitializeComponent();
+            Width = 150;
+            Height = 50;
         }
 
-        public FunctionNode(IContainer container)
-        {
-            container.Add(this);
+        // Public Properties
+        public string FunctionName = "Title";
+        public string FunctionDescription = "Description";
 
-            InitializeComponent();
+        // Draw node
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            Graphics g = e.Graphics;
+
+            // Draw node border
+            g.DrawRectangle(Pens.WhiteSmoke, 0, 0, Width, Height);
+            g.FillRectangle(Brushes.White, 0, 0, Width, Height);
+
+            // Draw node name
+            g.DrawString(FunctionName, Font, Brushes.Transparent, 5, 5);
         }
     }
 }
