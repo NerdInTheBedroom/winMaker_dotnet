@@ -6,6 +6,7 @@
  */
 
 using System.Diagnostics.Eventing.Reader;
+using winMaker_dotnet.DefaultEditor.DefaultNodes;
 
 namespace winMaker_dotnet.DefaultEditor
 {
