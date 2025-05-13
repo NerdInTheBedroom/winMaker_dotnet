@@ -2,7 +2,6 @@
  * Created on: 03/17/2025
  * Last modified on: 03/20/2025
  * Author: A1EX
- * GitHub: https://github.com/GeekInTheBedroom/winMaker_dotnet
  */
 
 using System.Diagnostics;

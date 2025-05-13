@@ -49,7 +49,7 @@ namespace winMaker_dotnet.Sub_menu
             BoxDirectory.Location = new Point(3, 3);
             BoxDirectory.MaxLength = 0;
             BoxDirectory.Name = "BoxDirectory";
-            BoxDirectory.PlaceholderText = "Choose the project loader (.wmp)";
+            BoxDirectory.PlaceholderText = "Select a .wmproj file";
             BoxDirectory.ReadOnly = true;
             BoxDirectory.Size = new Size(469, 32);
             BoxDirectory.TabIndex = 0;
@@ -78,9 +78,9 @@ namespace winMaker_dotnet.Sub_menu
             ButtonProject.FlatStyle = FlatStyle.Popup;
             ButtonProject.Location = new Point(3, 41);
             ButtonProject.Name = "ButtonProject";
-            ButtonProject.Size = new Size(151, 37);
+            ButtonProject.Size = new Size(121, 37);
             ButtonProject.TabIndex = 1;
-            ButtonProject.Text = "Choose the project";
+            ButtonProject.Text = "Choose the file";
             ButtonProject.UseVisualStyleBackColor = false;
             ButtonProject.Click += ButtonProject_Click;
             // 

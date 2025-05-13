@@ -41,7 +41,6 @@ namespace winMaker_dotnet.Sub_menu
             BoxName = new TextBox();
             LabelName = new Label();
             ButtonDirectory = new Button();
-            ComboType = new ComboBox();
             LayoutMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,22 +49,20 @@ namespace winMaker_dotnet.Sub_menu
             LayoutMenu.BackColor = Color.Transparent;
             LayoutMenu.ColumnCount = 1;
             LayoutMenu.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            LayoutMenu.Controls.Add(ButtonCreate, 0, 5);
+            LayoutMenu.Controls.Add(ButtonCreate, 0, 4);
             LayoutMenu.Controls.Add(BoxDirectory, 0, 2);
             LayoutMenu.Controls.Add(BoxName, 0, 0);
             LayoutMenu.Controls.Add(LabelName, 0, 1);
             LayoutMenu.Controls.Add(ButtonDirectory, 0, 3);
-            LayoutMenu.Controls.Add(ComboType, 0, 4);
             LayoutMenu.Dock = DockStyle.Fill;
             LayoutMenu.Location = new Point(0, 0);
             LayoutMenu.Name = "LayoutMenu";
-            LayoutMenu.RowCount = 6;
+            LayoutMenu.RowCount = 5;
             LayoutMenu.RowStyles.Add(new RowStyle());
             LayoutMenu.RowStyles.Add(new RowStyle());
             LayoutMenu.RowStyles.Add(new RowStyle());
-            LayoutMenu.RowStyles.Add(new RowStyle());
-            LayoutMenu.RowStyles.Add(new RowStyle(SizeType.Percent, 77.04918F));
-            LayoutMenu.RowStyles.Add(new RowStyle(SizeType.Percent, 22.950819F));
+            LayoutMenu.RowStyles.Add(new RowStyle(SizeType.Absolute, 269F));
+            LayoutMenu.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             LayoutMenu.Size = new Size(475, 432);
             LayoutMenu.TabIndex = 0;
             // 
@@ -76,10 +73,10 @@ namespace winMaker_dotnet.Sub_menu
             ButtonCreate.FlatAppearance.BorderColor = Color.MediumAquamarine;
             ButtonCreate.FlatAppearance.MouseOverBackColor = Color.MediumSeaGreen;
             ButtonCreate.FlatStyle = FlatStyle.Popup;
-            ButtonCreate.Location = new Point(160, 380);
+            ButtonCreate.Location = new Point(160, 383);
             ButtonCreate.Margin = new Padding(6);
             ButtonCreate.Name = "ButtonCreate";
-            ButtonCreate.Size = new Size(155, 46);
+            ButtonCreate.Size = new Size(155, 43);
             ButtonCreate.TabIndex = 5;
             ButtonCreate.Text = "Create project";
             ButtonCreate.UseVisualStyleBackColor = false;
@@ -91,7 +88,7 @@ namespace winMaker_dotnet.Sub_menu
             BoxDirectory.BorderStyle = BorderStyle.None;
             BoxDirectory.Dock = DockStyle.Fill;
             BoxDirectory.Font = new Font("Cordia New", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BoxDirectory.Location = new Point(3, 105);
+            BoxDirectory.Location = new Point(3, 73);
             BoxDirectory.MaxLength = 0;
             BoxDirectory.Name = "BoxDirectory";
             BoxDirectory.PlaceholderText = "Project directory";
@@ -119,9 +116,9 @@ namespace winMaker_dotnet.Sub_menu
             LabelName.ForeColor = Color.DarkGray;
             LabelName.Location = new Point(3, 38);
             LabelName.Name = "LabelName";
-            LabelName.Size = new Size(462, 64);
+            LabelName.Size = new Size(333, 32);
             LabelName.TabIndex = 1;
-            LabelName.Text = "*A project name must have 10-25 characters. Only letters and digits allowed.\r\n";
+            LabelName.Text = "*Max length: 25 (Only letters and digits allowed)*";
             // 
             // ButtonDirectory
             // 
@@ -129,25 +126,13 @@ namespace winMaker_dotnet.Sub_menu
             ButtonDirectory.FlatAppearance.BorderColor = Color.LightGray;
             ButtonDirectory.FlatAppearance.MouseOverBackColor = Color.DarkGray;
             ButtonDirectory.FlatStyle = FlatStyle.Popup;
-            ButtonDirectory.Location = new Point(3, 143);
+            ButtonDirectory.Location = new Point(3, 111);
             ButtonDirectory.Name = "ButtonDirectory";
             ButtonDirectory.Size = new Size(155, 37);
             ButtonDirectory.TabIndex = 3;
             ButtonDirectory.Text = "Choose a directory";
             ButtonDirectory.UseVisualStyleBackColor = false;
             ButtonDirectory.Click += ButtonDirectory_Click;
-            // 
-            // ComboType
-            // 
-            ComboType.BackColor = Color.Silver;
-            ComboType.FlatStyle = FlatStyle.Flat;
-            ComboType.FormattingEnabled = true;
-            ComboType.Items.AddRange(new object[] { "Console Application", "Window Desktop Aplication" });
-            ComboType.Location = new Point(3, 186);
-            ComboType.Name = "ComboType";
-            ComboType.Size = new Size(220, 40);
-            ComboType.TabIndex = 4;
-            ComboType.Text = "Select your project type";
             // 
             // MenuCreate
             // 
@@ -169,7 +154,6 @@ namespace winMaker_dotnet.Sub_menu
         private Label LabelName;
         private TextBox BoxDirectory;
         private Button ButtonDirectory;
-        private ComboBox ComboType;
         private Button ButtonCreate;
     }
 }

@@ -1,8 +1,7 @@
 ﻿/*
  * Created on: 03/20/2025
- * Last modified on: 03/23/2025
+ * Last modified on: 05/12/2025
  * Author: A1EX
- * GitHub: https://github.com/GeekInTheBedroom/winMaker_dotnet
  */
 
 using winMaker_dotnet.DefaultEditor;
@@ -17,36 +16,61 @@ namespace winMaker_dotnet.Sub_menu
             InitializeComponent();
         }
 
-        // Open file browser for opening the project
+        #region Open file browser for opening the project
         private void ButtonProject_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog ProjectFolder = new();
-            ProjectFolder.ShowDialog();
-            BoxDirectory.Text = ProjectFolder.SelectedPath;
+            OpenFileDialog ProjectFile = new();
+            ProjectFile.ShowDialog();
+            ProjectFile.DefaultExt = ".wmproj";
+            ProjectFile.Filter = "winMaker.NET (.wmproj)|*.wmproj";
+            BoxDirectory.Text = ProjectFile.FileName;
             ProjectPath = BoxDirectory.Text;
-            ProjectName = Path.GetFileName(ProjectPath);
 
-            // Check if the folder contains project files(Codes, Nodes)
-            if (!File.Exists($@"{ProjectPath}\{ProjectName}.wmcodes") && !File.Exists($@"{ProjectPath}\{ProjectName}.wmnodes"))
+            // Check if the file exists
+            if (!File.Exists(ProjectPath))
             {
-                MessageBox.Show("This folder doesn't have Codes file or Nodes file.", "Project Folder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The file you selected doesn't exist.", "Project File", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 // Reset everything
                 BoxDirectory.Text = string.Empty;
                 ProjectPath = string.Empty;
                 ProjectName = string.Empty;
             }
         }
-
-        // Open the project in the editor
+        #endregion
+        #region Open the project in the editor
         private void ButtonOpen_Click(object sender, EventArgs e)
         {
-            Editor editor = new()
+            // Check if loader has all paths
+            StreamReader ReadLoader = new(ProjectPath);
+            string[] Parts = ReadLoader.ReadToEnd().Split((char)31, StringSplitOptions.None);
+            if (Parts.Length != 4)
             {
-                LoadProjectName = ProjectName,
-                ProjectCodePath = @$"{ProjectPath}\{ProjectName}.wmcodes",
-                ProjectNodePath = $@"{ProjectPath}\{ProjectName}.wmnodes"
-            };
-            editor.Show();
+                MessageBox.Show("The project loader doesn't contain every paths.", "Project Loader", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // i = 1 to skip the first part(project name)
+                for (int i = 1; i < Parts.Length - 1; i++)
+                {
+                    if (!File.Exists(Parts[i]))
+                    {
+                        MessageBox.Show($"File that doesn't exist in the project: {Parts[i]}", "Project Loader", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                
+                // If everything is fine, open the project
+                Editor editor = new()
+                {
+                    ProjectLoaderPath = ProjectPath
+                };
+                editor.Show();
+            }
         }
+        #endregion
     }
 }

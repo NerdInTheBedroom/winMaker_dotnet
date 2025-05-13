@@ -1,110 +1,57 @@
 ﻿/*
  * Created on: 03/21/2025
- * Last modified on: 03/23/2025
+ * Last modified on: 05/13/2025
  * Author: A1EX
- * GitHub: https://github.com/GeekInTheBedroom
  */
-
-using System.Diagnostics.Eventing.Reader;
-using winMaker_dotnet.DefaultEditor.DefaultNodes;
 
 namespace winMaker_dotnet.DefaultEditor
 {
     public partial class Editor : Form
     {
-        public required string LoadProjectName, ProjectCodePath, ProjectNodePath;
+        public required string ProjectLoaderPath;
+        private string? ProjectName, MainScriptPath, MainCodePath, MainDesignerPath;
 
         public Editor()
         {
             InitializeComponent();
         }
 
-        // Set editor's title to project name
+        #region Parse project loader
         private void Editor_Load(object sender, EventArgs e)
         {
-            Text = $"{LoadProjectName} - winMaker.NET(Default Editor)";
-        }
+            // Read loader and parse
+            StreamReader ProjectLoader = new(ProjectLoaderPath);
+            string[] Paths = ProjectLoader.ReadToEnd().Split((char)31, StringSplitOptions.None);
+            ProjectLoader.Close();
 
-        #region Functions and Variables panel
-        // Checking for forbidden character in function name and variable name
-        private void BoxFunction_TextChanged(object sender, EventArgs e)
-        {
-            foreach (char c in BoxFunction.Text)
-            {
-                if (char.IsLetterOrDigit(c) != true || char.IsWhiteSpace(c) == true)
-                {
-                    BoxFunction.Text = "";
-                    MessageBox.Show("A function name only contains letters and numbers.", "Function Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
+            // Assign parts to variables
+            ProjectName = Paths[0];
+            MainScriptPath = Paths[1];
+            MainCodePath = Paths[2];
+            MainDesignerPath = Paths[3];
 
-        private void BoxVariable_TextChanged(object sender, EventArgs e)
-        {
-            foreach (char c in BoxVariable.Text)
+            #region Double check file extension
+            if (!MainScriptPath.EndsWith(".smic"))
             {
-                if (char.IsLetterOrDigit(c) != true || char.IsWhiteSpace(c) == true)
-                {
-                    BoxVariable.Text = "";
-                    MessageBox.Show("A variable name only contains letters and numbers.", "Variable Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show($"Wrong file extension: {MainScriptPath}", "File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
             }
-        }
-
-        // Creating functions and variables
-        private void ButtonCreateFunction_Click(object sender, EventArgs e)
-        {
-            if (ListBoxFunctions.Items.Contains(BoxFunction.Text))
+            if (!MainCodePath.EndsWith(".smic.cs"))
             {
-                MessageBox.Show("A function with this name already exists.", "Function Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Wrong file extension: {MainCodePath}", "File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
             }
-            else
+            if (!MainDesignerPath.EndsWith(".draw.smic"))
             {
-                ListBoxFunctions.Items.Add(BoxFunction.Text);
+                MessageBox.Show($"Wrong file extension: {MainDesignerPath}", "File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
             }
-        }
-
-        private void ButtonCreateVariable_Click(object sender, EventArgs e)
-        {
-            if (ListBoxVariables.Items.Contains(BoxVariable.Text))
-            {
-                MessageBox.Show("A variable with this name already exists.", "Variable Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                ListBoxVariables.Items.Add(BoxVariable.Text);
-            }
-        }
-
-        // Deleting functions and variables
-        private void ButtonDeleteFunction_Click(object sender, EventArgs e)
-        {
-            if (!ListBoxFunctions.Items.Contains(BoxFunction.Text))
-            {
-                MessageBox.Show("A function with this name doesn't exist.", "Function Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                ListBoxFunctions.Items.Remove(BoxFunction.Text);
-            }
-        }
-
-        private void ButtonDeleteVariable_Click(object sender, EventArgs e)
-        {
-            if (!ListBoxVariables.Items.Contains(BoxVariable.Text))
-            {
-                MessageBox.Show("A variable with this name doesn't exist.", "Variable Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                ListBoxVariables.Items.Remove(BoxVariable.Text);
-            }
-        }
-        #endregion
-        #region Editor panel
-        private void PanelEditor_MouseMove(object sender, MouseEventArgs e)
-        {
-            LabelCursor.Text = $"{e.X}, {e.Y}";
+            #endregion
+            // Everything is fine
+            // Set title to project name
+            Text = $"{ProjectName} - winMaker.NET(Default Editor)";
+            // Set design path to window designer
+            DesignerMain.Controls.Add(new WindowDesigner() { DesignerScriptPath = MainDesignerPath, Dock = DockStyle.Fill });
         }
         #endregion
     }

@@ -1,0 +1,26 @@
+﻿ * Created on: 03/21/2025
+ * Last modified on: 03/23/2025
+ * Author: A1EX
+ * GitHub: https://github.com/GeekInTheBedroom
+
+--- NOTE ---
+
+05/05/2025
+In this update, I decided to redesign everything. The concept, the system, the forms, etc.
+It's been so long since I commited the last changes to this project. Now, I'll be more hands on again.
+
+05/11/2025
+I started working on the designing system. I also made a quick update on the open project page.
+It's been hours now and I decided to make another major change, the project system.
+I have to change it because of the concept changes. Let's see if I'll be able to do it.
+
+05/12/2025
+Today, the project system is done. Well, almost done actually. The project loader is so simple for now.
+I recommend you to change the project loader system if you want to edit the program and publish it.
+You know, it should be at least encrypted for security stuffs.
+
+05/13/2025
+Today, I changed the designer file extension. I'm actually going to redo the Editor.
+I'm going to remove the custom function and custom variable because we're not using the Node-Editor system for now.
+
+I also changed some variables name for more readable code, I guess.

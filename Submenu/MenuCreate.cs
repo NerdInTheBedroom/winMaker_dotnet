@@ -1,11 +1,9 @@
 ﻿/*
  * Created on: 03/17/2025
- * Last modified on: 03/23/2025
+ * Last modified on: 05/13/2025
  * Author: A1EX
- * GitHub: https://github.com/GeekInTheBedroom
  */
 
-using System.Media;
 using winMaker_dotnet.DefaultEditor;
 
 namespace winMaker_dotnet.Sub_menu
@@ -17,75 +15,92 @@ namespace winMaker_dotnet.Sub_menu
             InitializeComponent();
         }
 
-        // Detect forbidden characters
+        #region Detect forbidden characters
         private void BoxName_TextChanged(object sender, EventArgs e)
         {
             foreach (char c in BoxName.Text)
             {
                 if (char.IsLetterOrDigit(c) != true)
                 {
-                    BoxName.Text = "";
+                    BoxName.Text = string.Empty;
                     MessageBox.Show("Only letters and digits allowed.", "Project Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
-        // Show the folder browser
+        #endregion
+        #region Open the folder browser
         private void ButtonDirectory_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog ProjectFolder = new();
-            ProjectFolder.ShowDialog();
-            BoxDirectory.Text = ProjectFolder.SelectedPath;
+            FolderBrowserDialog ProjectFolderDialog = new();
+            ProjectFolderDialog.ShowDialog();
+            BoxDirectory.Text = ProjectFolderDialog.SelectedPath;
         }
-
-        // Create the project
+        #endregion
+        #region Create the project
         private void ButtonCreate_Click(object sender, EventArgs e)
         {
-            // If project name isn't empty
-            if (BoxName.Text != string.Empty)
+            // If everything is filled
+            if (BoxName.Text != string.Empty && BoxDirectory.Text != string.Empty)
             {
                 // Set project name
                 string ProjectName;
                 ProjectName = BoxName.Text;
-
                 // If a directory with the same name as the project name already exist
                 if (Directory.Exists(@$"{BoxDirectory.Text}\{ProjectName}"))
                 {
                     MessageBox.Show("A directory with this project name already exist.", "Project Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 // If the path(project directory location) doesn't exist
-                else if (!Directory.Exists(BoxDirectory.Text) || ProjectName == string.Empty)
+                else if (!Directory.Exists(BoxDirectory.Text))
                 {
                     MessageBox.Show("Choosen directory is empty or doesn't exist.", "Project Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                // If project name isn't empty and the path(project directory location) exists
+                // If everything is fine
                 else
                 {
+                    char Separator = (char)31;
+
                     // Set project path
                     string ProjectPath;
                     ProjectPath = @$"{BoxDirectory.Text}\{ProjectName}";
-
                     // Create the project directory
                     Directory.CreateDirectory(ProjectPath);
 
-                    // Create the project files
-                    File.Create(@$"{ProjectPath}\{ProjectName}.wmcodes"); // Codes file
-                    File.Create(@$"{ProjectPath}\{ProjectName}.wmnodes"); // Nodes file
+                    string MainScriptPath, MainCodePath, MainDesignerPath;
+                    MainScriptPath = @$"{ProjectPath}\main.smic";
+                    MainCodePath = @$"{ProjectPath}\main.smic.cs";
+                    MainDesignerPath = $@"{ProjectPath}\main.draw.smic";
+
+                    // Main script file(.smic)
+                    StreamWriter MainScriptFile = new(MainScriptPath);
+                    MainScriptFile.Write("winShow(Main)");
+                    MainScriptFile.Close();
+                    // Main translated script file to C#(.smic.cs)
+                    StreamWriter MainCodeFile = new(MainCodePath);
+                    MainCodeFile.Write("// Will be written when project is built");
+                    MainCodeFile.Close();
+                    // Main designer script(.draw.smic)
+                    StreamWriter MainDesignerFile = new(MainDesignerPath);
+                    MainDesignerFile.Write("window Main");
+                    MainDesignerFile.Close();
+                    // Project loader file(.wmproj)
+                    StreamWriter ProjectLoader = new($@"{ProjectPath}\{ProjectName}.wmproj");
+                    ProjectLoader.Write($"{ProjectName}{Separator}{MainScriptPath}{Separator}{MainCodePath}{Separator}{MainDesignerPath}"); // Simple method
+                    ProjectLoader.Close();
 
                     // Open the project
                     Editor editor = new()
                     {
-                        LoadProjectName = ProjectName,
-                        ProjectCodePath = $@"{ProjectPath}\{ProjectName}.wmcodes",
-                        ProjectNodePath = $@"{ProjectPath}\{ProjectName}.wmnodes"
+                        ProjectLoaderPath = $@"{ProjectPath}\{ProjectName}.wmproj"
                     };
                     editor.Show();
                 }
             }
             else
             {
-                MessageBox.Show("Project name can't be empty.", "Project Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Did you fill anything? Check again.", "Create Project", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
     }
 }
